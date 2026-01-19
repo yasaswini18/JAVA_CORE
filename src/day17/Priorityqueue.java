@@ -15,21 +15,30 @@ In a priority queue, elements are ordered based on priority (not insertion order
  */
 public class Priorityqueue {
 	public static void main(String[] args) {
-		Queue<Task> task = new PriorityQueue<>();
-		task.offer(new Task("Yash" ,18));
-		task.offer(new Task("Sidd",13));
-		task.offer(new Task("Ram",30));
-		task.offer(new Task("Bob",29));
-		System.out.println(task);
+		Queue<Task> q=new PriorityQueue<>();
+		q.offer(new Task("revising notes",3));
+		q.offer(new Task("attending classes",4));
+		q.offer(new Task("wake up early",2));
+		q.offer(new Task("extra-curricular activities",1));
+		while(!q.isEmpty()){
+			System.out.println(q.poll());
+		}
 	}
-
 }
-class Task{
-	String name;
+class Task implements Comparable<Task>{
+	String task;
 	int priority;
-	Task(String name , int priority){
-		this.name=name;
-		this.priority = priority;
+	Task(String task,int priority){
+		this.priority=priority;
+		this.task=task;
+	}
+	@Override
+	public int compareTo(Task t){
+		return Integer.compare(this.priority,t.priority);
+	}
+	@Override
+	public String toString(){
+		 return task+" "+priority;
 	}
 	
 }
